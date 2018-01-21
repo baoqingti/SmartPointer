@@ -27,7 +27,7 @@ public:
         if (mPointer) delete mPointer;
     }
 private:
-    void *mPointer;     //指向智能指针实际对象的资源对象
+    T *mPointer;     //指向智能指针实际对象的资源对象
 };
 
 #endif // SMARTPOINTER_V1_H_INCLUDED
