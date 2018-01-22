@@ -1,6 +1,7 @@
 #include "SmartPointer_v1.h"
 #include "SmartPointer_v2.h"
 #include "SmartPointer_v3.h"
+#include "SmartPointer_v4.h"
 //测试代码
 
 //测试v1,v2代码中应用的类
@@ -18,6 +19,25 @@ public:
     SomeClass3() {cout << "SomeClass3 default constructor" << endl;}
 
     ~SomeClass3() {cout << "SomeClass3 destructor" << endl;}
+};
+
+//测试v4代码中应用的类
+class SomeClass4: public RefBase
+{
+public:
+    SomeClass4() {cout << "SomeClass4 default constructor" << endl;}
+    ~SomeClass4() {cout << "SomeClass4 destructor" << endl;}
+
+    void func() {cout << "func() function" << endl;}
+};
+
+class OtherClass4:public RefBase
+{
+public:
+    OtherClass4() {cout << "OtherClass4 default constructor" << endl;}
+    ~OtherClass4() {cout << "OtherClass4 destructor" << endl;}
+
+    void foo() {cout << "foo() function" << endl;}
 };
 
 void testcase1()
@@ -55,7 +75,7 @@ void testcase2()
 
 void testcase3()
 {
-    cout << "观察与testcase2的结果对比,引用计数使得pSomeClass3仅被销毁一次！"
+    cout << "观察与testcase2的结果对比,引用计数使得pSomeClass3仅被销毁一次！" << endl;
 
     SomeClass3 *pSomeClass3 = new SomeClass3();
     cout << pSomeClass3->getRefCount() << endl; //此时输出0
@@ -78,6 +98,41 @@ void testcase3()
     //
 }
 
+
+//测试解引用运算符函数
+void testcase4_1()
+{
+    SmartPointer_v4<SomeClass4> spcomeclass4 = new SomeClass4();
+    //测试解引用运算符
+    (*spcomeclass4).func();
+    spcomeclass4->func();
+    cout << endl;
+}
+
+//测试有效性与判空
+void testcase4_2()
+{
+    SomeClass4 *psomeclass4 = new SomeClass4();
+    SmartPointer_v4<SomeClass4> spsomeclass4 = psomeclass4;     //
+
+    SmartPointer_v4<OtherClass4> spotherclass4_1 = new OtherClass4();
+    SmartPointer_v4<OtherClass4> spotherclass4_2 = spotherclass4_1;
+
+    if (spsomeclass4 == nullptr) cout << "spsomeclass4 is nullpter" << endl;
+    if (spotherclass4_1 != nullptr) cout << "spotherclass4_1 is not nullptr" << endl;
+
+    if (spsomeclass4 == psomeclass4)    //普通指针与智能指针
+        cout << "spsomeclass4 and psomeclass4 are same pointer" << endl;
+    if (spsomeclass4 != psomeclass4)
+        cout << "spsomeclass4 and psomeclass are not same pointer" << endl;
+
+    if (spotherclass4_1 == spotherclass4_2)     //智能指针与智能指针
+        cout << "spotherclass4_1 and spotherclass4_2 are same pointer" << endl;
+    if (spotherclass4_1 != spotherclass4_2)
+        cout << "spotherclass4_1 and spotherclass4_2 are not same pointer" << endl;
+
+}
+
 int main()
 {
     cout << "***************testcase1：*****************" << endl;
@@ -86,6 +141,13 @@ int main()
     testcase2();
     cout << "***************testcase3:******************" << endl;
     testcase3();
+
+    cout << endl;
+    cout << "***************testcase4_1:*****************" << endl;
+    testcase4_1();
+
+    cout << "***************testcase4_2:******************" << endl;
+    testcase4_2();
 
     return 0;
 }
