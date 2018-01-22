@@ -1,8 +1,9 @@
 # depslib dependency file v1.0
-1516540688 source:f:\自学代码\实验楼\smartpointer\smartpointer\main.cpp
+1516632908 source:f:\自学代码\实验楼\smartpointer\smartpointer\main.cpp
 	"SmartPointer_v1.h"
 	"SmartPointer_v2.h"
 	"SmartPointer_v3.h"
+	"SmartPointer_v4.h"
 
 1516536799 f:\自学代码\实验楼\smartpointer\smartpointer\smartpointer_v1.h
 	<iostream>
@@ -11,4 +12,6 @@
 	<iostream>
 
 1516541402 f:\自学代码\实验楼\smartpointer\smartpointer\smartpointer_v3.h
+
+1516633037 f:\自学代码\实验楼\smartpointer\smartpointer\smartpointer_v4.h
 

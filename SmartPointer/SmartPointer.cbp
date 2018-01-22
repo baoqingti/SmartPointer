@@ -32,6 +32,9 @@
 			<Add option="-Wall" />
 			<Add option="-fexceptions" />
 		</Compiler>
+		<Unit filename="SmartPointer_v1.h" />
+		<Unit filename="SmartPointer_v2.h" />
+		<Unit filename="SmartPointer_v3.h" />
 		<Unit filename="main.cpp" />
 		<Extensions>
 			<code_completion />
