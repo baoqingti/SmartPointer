@@ -2,6 +2,7 @@
 #define SMARTPOINTER_V4_H_INCLUDED
 
 //计数基类
+/*
 class RefBase
 {
 public:
@@ -23,6 +24,7 @@ public:
 private:
     int count = 0;
 };
+*/
 
 //增加解引用运算符,以及有效与判空即if(sp), if(!sp), if(sp==nullptr)
 //头文件SmartPointer_v4.h
@@ -45,11 +47,12 @@ public:
 
     SmartPointer_v4& operator=(const SmartPointer_v4& other)
     {
-        T* temp(other.mPointer);
-        if (temp) temp->incRefCount();
+        //T* temp(other.mPointer);
+        //if (temp) temp->incRefCount();
+        if (other.mPointer) other.mPointer->incRefCount();
         if (mPointer && mPointer->decRefCount() == 0) delete mPointer;
 
-        mPointer = temp;
+        mPointer = other.mPointer;
 
         return *this;
     }
@@ -65,7 +68,7 @@ public:
     //重载==
     //与普通指针的版本
     bool operator==(const T* other) const {
-        return mPointer == o;
+        return mPointer == other;
     }
     //与智能指针的版本
     bool operator==(const SmartPointer_v4& other) const {
